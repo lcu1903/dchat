@@ -4,6 +4,8 @@ const styles = {
     directMessageWidth: 'w-60',
     contentWidth: 'w-[calc(100%_-_72px_-_240px)]',
     black: '#000000',
+    greenLime: '#368044',
+    textHovered: '#f2f3f5',
 };
 
 export default styles;

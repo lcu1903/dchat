@@ -3,14 +3,14 @@ import Sidebar from '../components/Sidebar';
 import Inbox from '../components/Inbox';
 import Content from '../components/Content';
 import styles from '../styles';
+
 function Profile() {
     return (
         <div className="flex">
             <Inbox />
             <Sidebar />
-            <div className={`${styles.contentWidth} bg-slate-400`}>
+            <div className={`${styles.contentWidth} bg-content`}>
                 <Header />
-                <div>-----------------</div>
                 <Content />
             </div>
         </div>

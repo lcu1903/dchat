@@ -8,9 +8,11 @@ const Button = ({
     bgHoverColor,
     size,
     width,
+    padding,
     disabled = false,
     pointerEvents,
     onClick,
+    hoverBackground,
     ...passProps
 }) => {
     const props = {
@@ -25,12 +27,16 @@ const Button = ({
         });
     }
     return (
-        <button
-            style={{ backgroundColor: bgColor, color, pointerEvents }}
-            className={` text-text flex text-${size} max-h-6 px-2  w-${width} hover:text-textHovered hover:bg-hovered mx-2 min-w-max select-none whitespace-nowrap rounded hover:drop-shadow-xl `}
+        <div
+            style={{ backgroundColor: bgColor, color, pointerEvents, padding }}
+            className={` text-text flex text-${size}
+                 mx-2 max-h-6 min-w-max px-2 py-0.5 w-${width}
+                 hover:text-textHovered hover:bg-${hoverBackground}
+                 cursor-pointer select-none items-center whitespace-nowrap
+                 rounded hover:drop-shadow-xl `}
         >
             {children}
-        </button>
+        </div>
     );
 };
 

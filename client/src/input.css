@@ -2,4 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-.root{}
+@layer components {
+    /* Customizing Tooltip Design */
+    .tippy-box {
+        background-color: #255d95;
+        color: #949698;
+        border-radius: 4px;
+        width: 60px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font: 'gg sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+        margin-top: -12px;
+    }
+    .icon-box {
+        background-color: #313338;
+        color: #f2f3f5;
+        margin-bottom: 0.5rem;
+        display: flex;
+        height: 52px;
+        width: 52px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 350ms;
+    }
+}
+
+.root {
+}

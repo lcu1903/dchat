@@ -3,7 +3,7 @@ import useAxios from '../hooks/useAxios';
 function ListItem() {
     const {
         fetchData,
-        response: { categories },
+        response: { items },
         loading,
     } = useAxios('categories');
     useEffect(() => {
@@ -12,15 +12,15 @@ function ListItem() {
 
     if (loading) {
         return (
-            <div className="animate-pulse my-5 inline-block text-center">
+            <div className="my-5 inline-block animate-pulse text-center">
                 {[...Array(35).keys()].map((num) => (
-                    <div key={num} className="h-7 w-20 bg-gray-300 m-1 rounded-sm inline-block"></div>
+                    <div key={num} className="m-1 inline-block h-7 w-20 rounded-sm bg-gray-300"></div>
                 ))}
             </div>
         );
     }
 
-    return <div>{categories && categories.map((button) => <button>{button}</button>)}</div>;
+    return <div>{items && items.map((button) => <button>{button}</button>)}</div>;
 }
 
 export default ListItem;

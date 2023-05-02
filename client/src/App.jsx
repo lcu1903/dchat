@@ -1,13 +1,9 @@
-import Profile from './pages/Profile';
 import './input.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './config/routes';
 
 function App() {
-    return (
-      
-        <div>
-            <Profile></Profile>
-        </div>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,4 +1,2 @@
-const Divider = ({ width, height }) => {
-    return <div className={`bg-divider h-${height} w-${width} opacity-100`}></div>;
-};
+const Divider = ({ width = '', height = '' }) => <div className={` bg-divider w-${width} h-${height} mx-2 `}></div>;
 export default Divider;

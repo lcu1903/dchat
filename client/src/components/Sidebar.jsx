@@ -1,8 +1,6 @@
-import styles from "../styles";
+import styles from '../styles';
 
-function Sidebar(){
-    return(
-        <div className={` h-screen ${styles.directMessageWidth} bg-[#2b2d31]`}> sidebar </div>
-    );
+function Sidebar() {
+    return <div className={` h-screen ${styles.directMessageWidth} bg-sidebar`}> sidebar </div>;
 }
 export default Sidebar;

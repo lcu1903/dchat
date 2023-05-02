@@ -6,7 +6,7 @@ import styles from '../styles';
 
 function Profile() {
     return (
-        <div className="flex">
+        <div className="font-fontDisplay flex text-lg">
             <Inbox />
             <Sidebar />
             <div className={`${styles.contentWidth} bg-content`}>

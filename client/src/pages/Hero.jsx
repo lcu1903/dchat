@@ -14,7 +14,7 @@ function Hero() {
             .catch((error) => alert(error.message));
     };
     return (
-        <button onClick={!user ? signIn : () => navigate(routes.channel)}> {!user ? 'login' : 'Open discord'} </button>
+        <button onClick={!user ? signIn : () => navigate(routes.serverChannel)}> {!user ? 'login' : 'Open discord'} </button>
     );
 }
 

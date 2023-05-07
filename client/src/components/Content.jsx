@@ -3,7 +3,7 @@ function Content() {
         <div className={``}>
             {/* people */}
             <div></div>
-
+            chat
             {/* online */}
             <div></div>
         </div>

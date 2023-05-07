@@ -20,6 +20,9 @@ module.exports = {
                 fontDisplay: ['gg sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
                 fontHeadline: ['ABC Ginto Nord', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
             },
+            backgroundImage: {
+               
+              },
         },
     },
     plugins: [],

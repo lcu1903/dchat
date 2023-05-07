@@ -31,14 +31,14 @@ function Header() {
                     </div>
 
                     {/* Divider */}
-                    <div className={` bg-divider mx-2 h-6 w-[1px] `}></div>
+                    <div className={`divider bg-divider mx-2 h-6 w-[1px] `}></div>
 
                     {/*  */}
-                    <Button hoverBackground={'hovered'}>Online</Button>
-                    <Button hoverBackground={'hovered'}>All</Button>
-                    <Button hoverBackground={'hovered'}>Pending</Button>
-                    <Button hoverBackground={'hovered'}>Blocked</Button>
-                    <Button bgColor={styles.greenLime} color={styles.textHovered}>
+                    <Button className={'mx-2'}>Online</Button>
+                    <Button className={'mx-2'}>All</Button>
+                    <Button className={'mx-2'}>Pending</Button>
+                    <Button className={'mx-2'}>Blocked</Button>
+                    <Button className={'mx-2'} bgColor={styles.greenLime} color={styles.textHovered}>
                         Add Friend
                     </Button>
                 </div>

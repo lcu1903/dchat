@@ -12,6 +12,7 @@ function ListItem() {
 
     if (loading) {
         return (
+            
             <div className="my-5 inline-block animate-pulse text-center">
                 {[...Array(35).keys()].map((num) => (
                     <div key={num} className="m-1 inline-block h-7 w-20 rounded-sm bg-gray-300"></div>

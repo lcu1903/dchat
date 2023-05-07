@@ -1,7 +1,7 @@
 
 import Profile from '../pages/Profile';
 import routes from '.';
-import Channels from '../pages/Channels';
+import Channels from '../components/Channels';
 
 const router= ([
     {

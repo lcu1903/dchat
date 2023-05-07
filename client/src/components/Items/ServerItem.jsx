@@ -1,5 +1,4 @@
-import { DiscordIcon } from '../img';
-
+import { DiscordIcon } from '../../img';
 
 function ServerItem({ bgHover = 'itemsTheme', name = '', onClick, image }) {
     if (name.length > 4) {
@@ -7,10 +6,7 @@ function ServerItem({ bgHover = 'itemsTheme', name = '', onClick, image }) {
     }
     return (
         <>
-            <button
-                onClick={onClick}
-                className={`icon-box hover:bg-${bgHover}  hover:rounded-2xl`}
-            >
+            <button onClick={onClick} className={`icon-box hover:bg-${bgHover}  hover:rounded-2xl`}>
                 {!name ? <DiscordIcon /> : name}
             </button>
         </>

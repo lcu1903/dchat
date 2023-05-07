@@ -20,8 +20,8 @@ function Header() {
     return (
         <>
             {redirect}
-            <section className={`${styles.boxHeight}  font-fontDisplay  flex px-2 shadow`}>
-                <div className=" flex h-full w-full items-center overflow-hidden  ">
+            <section className={`${styles.headerDefault}`}>
+                <div className=" flex flex-nowrap w-full items-center overflow-hidden  ">
                     {/* FriendIcon */}
                     <div className="pointer-events-none flex px-[7px]">
                         <div className="px-[7px]">

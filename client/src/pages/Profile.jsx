@@ -1,14 +1,15 @@
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import SidebarServer from '../components/Sidebar/SidebarServer';
 
 import styles from '../styles';
 
-
 function Profile() {
     return (
-        <div className="font-fontDisplay flex text-lg h-screen">
-            <Sidebar />
-            <div className={`bg-content ${styles.contentWidth}`}><Header/></div>
+        <div className="font-fontDisplay flex h-screen text-lg">
+            <SidebarServer />
+            <div className={`bg-content ${styles.contentWidth}`}>
+                <Header />
+            </div>
         </div>
     );
 }

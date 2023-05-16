@@ -1,15 +1,15 @@
-import { FriendIcon, HelpIcon, InboxIcon } from '../img';
+import { FriendIcon, HelpIcon, InboxIcon } from '../../img';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import styles from '../styles';
-import Button from './Button';
+import styles from '../../styles';
+import Button from '../Button';
 
 import React, { useEffect } from 'react';
 
-import routes from '../config';
+import routes from '../../config';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 
 function Header() {
     const [user] = useAuthState(auth);
@@ -21,7 +21,7 @@ function Header() {
         <>
             {redirect}
             <section className={`${styles.headerDefault}`}>
-                <div className=" flex flex-nowrap w-full items-center overflow-hidden  ">
+                <div className=" flex w-full flex-nowrap items-center overflow-hidden  ">
                     {/* FriendIcon */}
                     <div className="pointer-events-none flex px-[7px]">
                         <div className="px-[7px]">

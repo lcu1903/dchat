@@ -1,7 +1,8 @@
 const routes = {
     home: '/',
     serverChannel: '/channel',
-    channel: "/channel/123",
+    channel: "/channel/:id",
+    textChannel : "/channel/:id/:id"
     
 };
 export default routes;

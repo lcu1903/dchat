@@ -3,8 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import router from './config/routes';
 import { Routes, Route } from 'react-router-dom';
 import Hero from './pages/Hero';
+import DefaultLayout from './components/layouts/DefaultLayout';
 
-import DefaultLayout from './components/DefaultLayout';
+
 
 function App() {
     return (
@@ -14,9 +15,8 @@ function App() {
                     let Layout = DefaultLayout;
                     const Page = route.element;
                     return (
-                        <Route>
-                            
-                            <Route path={'/'} element={<Hero></Hero>}></Route>
+                        <Route key={index}>
+                            <Route key={index} path={'/'} element={<Hero></Hero>}></Route>
 
                             <Route
                                 key={index}

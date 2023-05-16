@@ -15,6 +15,7 @@ module.exports = {
                 inboxCol: '#1e1f22',
                 black: '#000000',
                 itemsTheme: '#5e66f4',
+                green:'#23a559'
             },
             fontFamily: {
                 fontDisplay: ['gg sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],

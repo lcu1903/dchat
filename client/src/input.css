@@ -5,7 +5,7 @@
 @layer components {
     /* Customizing Tooltip Design */
     *{
-     @apply text-text scrollbar-hide
+     @apply scrollbar-hide
     }
     .tippy-box { 
      @apply bg-[#255d95] text-[#949698] rounded w-16 h-9 flex justify-center items-center font-fontDisplay mt-[-12px] ;

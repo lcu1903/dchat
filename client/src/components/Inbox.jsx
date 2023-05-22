@@ -21,16 +21,14 @@ function Inbox() {
         if (serverName) {
             db.collection('serverItems').add({
                 serverName: serverName,
-                serverImage:null,
+                serverImage: null,
             });
         }
     };
 
     return (
-        <div
-            className={` flex h-screen w-[72px] flex-col ${styles.inboxWidth} bg-inboxCol items-center justify-start pt-3`}
-        >
-            <button className=" icon-box hover:bg-itemsTheme hover:rounded-2xl " onClick={handleProfileClicked}>
+        <div className={` flex h-screen w-[72px] flex-col ${styles.inboxWidth} bg-inboxCol items-center pt-3`}>
+            <button className=" icon-box hover:bg-itemsTheme " onClick={handleProfileClicked}>
                 <DiscordIcon />
             </button>
             <div className="divider mb-2 h-[2px] w-10"></div>
@@ -39,7 +37,7 @@ function Inbox() {
                     <ServerItem key={doc.id} id={doc.id} name={doc.data().serverName}></ServerItem>
                 ))}
             </div>
-            <button className="icon-box text-green" onClick={handleAddServer}>
+            <button className={'icon-box text-green hover:bg-green hover:text-textHovered'} onClick={handleAddServer}>
                 <PlusIcon />{' '}
             </button>
         </div>

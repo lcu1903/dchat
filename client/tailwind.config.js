@@ -15,18 +15,17 @@ module.exports = {
                 inboxCol: '#1e1f22',
                 black: '#000000',
                 itemsTheme: '#5e66f4',
-                green:'#23a559'
+                green: '#23a559',
+                UserBg: '#232428',
+                ChatInput: '#383a40',
+                blurMessage: '#61626b',
             },
             fontFamily: {
                 fontDisplay: ['gg sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
                 fontHeadline: ['ABC Ginto Nord', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
             },
-            backgroundImage: {
-               
-              },
+            backgroundImage: {},
         },
     },
-    plugins: [
-        require('tailwind-scrollbar-hide')
-    ],
+    plugins: [require('tailwind-scrollbar-hide')],
 };

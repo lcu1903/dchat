@@ -3,16 +3,9 @@ import { twMerge } from 'tailwind-merge';
 
 const Button = ({
     children,
-    icon,
     bgColor,
     color,
-    bgHoverColor,
-    size,
-    width,
-    height,
-    padding,
     disabled = false,
-    pointerEvents,
     onClick,
     className,
     ...passProps
@@ -40,7 +33,8 @@ const Button = ({
     }
     return (
         <div
-            style={{ backgroundColor: bgColor, color, pointerEvents, padding }}
+            style={{ backgroundColor: bgColor, color}}
+            onClick={onClick}
             className={classes}
         >
             {children}

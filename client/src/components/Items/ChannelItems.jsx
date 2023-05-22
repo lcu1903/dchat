@@ -23,7 +23,7 @@ function ChannelItems({ name, id, icon }) {
         navigate(`/channel/${serverId}/${id}`);
     };
     return (
-        <div className="Channels mb-[1px]">
+        <div className="Channels mb-[1px] h-9 ">
             <div className={`${styles.channelDefault} `} onClick={handleChannelClicked}>
                 <div className='pr-1'>{icon}</div>
                 <div>{name}</div>

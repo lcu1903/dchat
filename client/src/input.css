@@ -12,7 +12,7 @@
     }
     .icon-box {
        
-        @apply bg-content text-textHovered flex mb-2 h-12 w-12 items-center justify-center rounded-[30px] transition-all duration-300
+        @apply bg-content text-textHovered flex mb-2 h-12 w-12 items-center justify-center rounded-[30px] transition-all duration-300 hover:rounded-2xl
     }
     .divider{
         @apply bg-divider rounded-lg

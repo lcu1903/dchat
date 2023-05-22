@@ -36,7 +36,7 @@ function ServerItem({ bgHover = 'itemsTheme', name = '', onClick, image, id }) {
     }
     return (
         <>
-            <button onClick={handleServerClicked} className={`icon-box hover:bg-${bgHover}  hover:rounded-2xl`}>
+            <button onClick={handleServerClicked} className={`icon-box hover:bg-${bgHover} `}>
                 {!name ? <DiscordIcon /> : name}
             </button>
         </>

@@ -5,9 +5,9 @@ import styles from '../styles';
 
 function Profile() {
     return (
-        <div className="font-fontDisplay flex h-screen text-lg">
+        <div className="font-fontDisplay flex  text-lg max-h-screen ">
             <SidebarServer />
-            <div className={`bg-content ${styles.contentWidth}`}>
+            <div className={`bg-content ${styles.contentWidth} `}>
                 <Header />
             </div>
         </div>

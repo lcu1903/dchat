@@ -3,7 +3,6 @@ import { DiscordIcon } from '../../img';
 import { setChannelInfo, setServerInfo } from '../../features/channelSlice';
 import { useNavigate } from 'react-router-dom';
 
-
 function ServerItem({ bgHover = 'itemsTheme', name = '', onClick, image, id }) {
     const dispatch = useDispatch();
 
@@ -21,15 +20,15 @@ function ServerItem({ bgHover = 'itemsTheme', name = '', onClick, image, id }) {
     const resetChannelInfo = () => {
         dispatch(
             setChannelInfo({
-                channelId: null,
-                channelName: "",
+                channelId: '',
+                channelName: '',
             }),
         );
     };
-    const handleServerClicked = () =>{
-        setServer();  
+    const handleServerClicked = () => {
+        setServer();
         resetChannelInfo();
-    }
+    };
 
     if (name.length > 4) {
         name = name.slice(0, 1);

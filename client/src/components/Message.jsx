@@ -2,13 +2,14 @@ import moment from 'moment';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase';
 import { Trash2 } from 'react-feather';
-import { selectChannelId, selectServerId } from '../features/channelSlice';
-import { useSelector } from 'react-redux';
+import { selectChannelId, selectServerId, setChannelInfo } from '../features/channelSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
 function Message({ id, message, timestamp, name, photoURL, email }) {
     const [user] = useAuthState(auth);
-    const channelId = useSelector(selectChannelId);
+    var channelId = useSelector(selectChannelId);
     const serverId = useSelector(selectServerId);
+
     return (
         <div className="hover:bg-hovered my-5 mr-2 flex items-center p-1 pl-5 ">
             <img src={photoURL} alt="" className="mr-3 h-10 cursor-pointer rounded-full hover:shadow-2xl"></img>
@@ -23,17 +24,16 @@ function Message({ id, message, timestamp, name, photoURL, email }) {
             </div>
             {user?.email === email && (
                 <Button
-                    className="hover:text-textHovered ml-auto cursor-pointer rounded-sm opacity-20 hover:opacity-100 hover:bg-trashBg p-1"
-                    onClick={() =>
-                        db
-                            .collection('serverItems')
+                    className="hover:text-textHovered hover:bg-trashBg ml-auto cursor-pointer rounded-sm p-1 opacity-20 hover:opacity-100"
+                    onClick={() => {
+                        db.collection('serverItems')
                             .doc(serverId)
                             .collection('channels')
                             .doc(channelId)
                             .collection('message')
                             .doc(id)
-                            .delete()
-                    }
+                            .delete();
+                    }}
                 >
                     <Trash2 className=" h-5" />
                 </Button>

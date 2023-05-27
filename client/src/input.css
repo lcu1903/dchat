@@ -17,9 +17,8 @@
         @apply bg-divider rounded-lg;
     }
     .hero-bg {
-        @apply bg-[url('D:\Work\Visualcode\dchat\client\src\img\signIn.webp')];
+        @apply bg-[url('./img/signIn.webp')];
     }
-    
 }
 
 .root {

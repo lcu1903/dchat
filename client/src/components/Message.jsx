@@ -4,6 +4,7 @@ import { auth, db } from '../firebase';
 import { Trash2 } from 'react-feather';
 import { selectChannelId, selectServerId } from '../features/channelSlice';
 import { useSelector } from 'react-redux';
+import Button from './Button';
 function Message({ id, message, timestamp, name, photoURL, email }) {
     const [user] = useAuthState(auth);
     const channelId = useSelector(selectChannelId);
@@ -21,8 +22,8 @@ function Message({ id, message, timestamp, name, photoURL, email }) {
                 <p className="text-text text-sm">{message}</p>
             </div>
             {user?.email === email && (
-                <div
-                    className="ml-auto bg-[#ed4245] p-1 cursor-pointer rounded-sm hover:text-textHovered"
+                <Button
+                    className="hover:text-textHovered ml-auto cursor-pointer rounded-sm opacity-20 hover:opacity-100 hover:bg-trashBg p-1"
                     onClick={() =>
                         db
                             .collection('serverItems')
@@ -35,7 +36,7 @@ function Message({ id, message, timestamp, name, photoURL, email }) {
                     }
                 >
                     <Trash2 className=" h-5" />
-                </div>
+                </Button>
             )}
         </div>
     );

@@ -1,6 +1,3 @@
-import img1 from './img1.jpeg';
-import download from './download.jpg';
-
 const FriendIcon = ({ width = '24px', height = '24px', className }) => (
     <svg
         className={className}
@@ -154,8 +151,6 @@ const SettingsIcon = ({ width = '1.2rem', height = '1.2rem', className }) => (
     </svg>
 );
 export {
-    img1,
-    download,
     FriendIcon,
     HelpIcon,
     InboxIcon,

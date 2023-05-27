@@ -1,7 +1,7 @@
 import { FriendIcon, NitroIcon } from '../../img';
 import styles from '../../styles';
 import Button from '../Button';
-import User from '../User';
+import User from '../Items/User';
 
 function SidebarServer() {
     return (

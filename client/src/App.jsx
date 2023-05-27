@@ -4,8 +4,7 @@ import router from './config/routes';
 import { Routes, Route } from 'react-router-dom';
 import Hero from './pages/Hero';
 import DefaultLayout from './components/layouts/DefaultLayout';
-
-
+import { LogIn, SignUp } from './pages';
 
 function App() {
     return (
@@ -17,7 +16,8 @@ function App() {
                     return (
                         <Route key={index}>
                             <Route key={index} path={'/'} element={<Hero></Hero>}></Route>
-
+                            <Route key={index} path={'/logIn'} element={<LogIn />}></Route>
+                            <Route key={index} path={'/signUp'} element={<SignUp />}></Route>
                             <Route
                                 key={index}
                                 path={route.path}

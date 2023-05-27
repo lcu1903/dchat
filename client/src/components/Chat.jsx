@@ -8,13 +8,37 @@ import { useRef } from 'react';
 import firebase from 'firebase/compat/app';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Message from './Message';
+
 function Chat() {
     const channelName = useSelector(selectChannelName);
     const channelId = useSelector(selectChannelId);
+
     const serverId = useSelector(selectServerId);
+
     const [user] = useAuthState(auth);
+    var name = '';
+    const id = user?.uid;
+    if (user) {
+        name = user.displayName;
+    }
+    if (user) {
+        db.collection('users')
+            .doc(`${id}`)
+            .get()
+            .then((doc) => {
+                return (name = doc.data()?.username);
+            });
+    }
+
+    var avatar = '';
+    if (!user?.photoURL) {
+        avatar = 'https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg';
+    } else {
+        avatar = user?.photoURL;
+    }
     const inputRef = useRef('');
     const chatRef = useRef(null);
+
     const [message] = useCollection(
         serverId &&
             channelId &&
@@ -39,8 +63,8 @@ function Chat() {
                 .add({
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     message: inputRef.current.value,
-                    name: user?.displayName,
-                    photoURL: user?.photoURL,
+                    name: name,
+                    photoURL: avatar,
                     email: user?.email,
                 });
         }

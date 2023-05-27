@@ -4,21 +4,23 @@
 
 @layer components {
     /* Customizing Tooltip Design */
-    *{
-     @apply scrollbar-hide
+    * {
+        @apply scrollbar-hide;
     }
-    .tippy-box { 
-     @apply bg-[#255d95] text-[#949698] rounded w-16 h-9 flex justify-center items-center font-fontDisplay mt-[-12px] ;
+    .tippy-box {
+        @apply font-fontDisplay mt-[-12px] flex h-9 w-16 items-center justify-center rounded bg-[#255d95] text-[#949698];
     }
     .icon-box {
-       
-        @apply bg-content text-textHovered flex mb-2 h-12 w-12 items-center justify-center rounded-[30px] transition-all duration-300 hover:rounded-2xl
+        @apply bg-content text-textHovered mb-2 flex h-12 w-12 items-center justify-center rounded-[30px] transition-all duration-300 hover:rounded-2xl;
     }
-    .divider{
-        @apply bg-divider rounded-lg
+    .divider {
+        @apply bg-divider rounded-lg;
     }
+    .hero-bg {
+        @apply bg-[url('D:\Work\Visualcode\dchat\client\src\img\signIn.webp')];
+    }
+    
 }
 
 .root {
-   
 }

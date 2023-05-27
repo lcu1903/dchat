@@ -1,10 +1,12 @@
+import routes from './index.js';
 
-import Profile from '../pages/Profile';
-import routes from '.';
-import Channels from '../components/Channels';
+import { SignUp, LogIn, Profile, Channels, Hero } from '../pages/index.js';
 
-
-const router= ([
+const router = [
+    {
+        path: routes.home,
+        element: Hero,
+    },
     {
         path: routes.serverChannel,
         element: Profile,
@@ -14,9 +16,17 @@ const router= ([
         element: Channels,
     },
     {
-        path:routes.textChannel,
-        element:Channels,
-    }
-]);
+        path: routes.textChannel,
+        element: Channels,
+    },
+    {
+        path: routes.logIn,
+        element: LogIn,
+    },
+    {
+        path: routes.signUp,
+        element: SignUp,
+    },
+];
 
 export default router;

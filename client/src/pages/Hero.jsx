@@ -2,8 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import routes from '../config';
 import Button from '../components/Button';
 import styles from '../styles';
+
 function Hero() {
     const navigate = useNavigate();
+   
     return (
         <div className={`${styles.signInDefault}`}>
             <div className={`${styles.signInContentDefault} `}>

@@ -10,16 +10,24 @@ function User() {
     const navigate = useNavigate();
 
     const [user] = useAuthState(auth);
-    var name = useSelector(selectUsername);
+
+    let [name, setName] = useState(useSelector(selectUsername));
+    const [isLoading, setIsLoading] = useState(true);
+
     if (!name) name = user?.displayName;
+
+    //get username from db
     if (user) {
         db.collection('users')
             .doc(user.uid)
             .get()
             .then((doc) => {
                 name = doc.data().username;
+                setName(name);
+                setIsLoading(false);
             });
-    } //bug because firebase too slow
+    }
+    
     const handleSignOutClicked = () => {
         auth.signOut();
         navigate('/');
@@ -43,18 +51,22 @@ function User() {
 
     return (
         <div className={`bg-UserBg text-text flex h-[52px] w-[120px] min-w-[240px] items-center px-2 `}>
-            <Button className={'mr-1 flex h-10  w-14 max-w-[132px] p-0 text-sm'}>
-                <img
-                    src={avatar}
-                    alt=""
-                    className="mr-1 flex h-8 w-8 justify-end rounded-full"
-                    onClick={handleSignOutClicked}
-                ></img>
-                <div className="pl-1">
-                    <div className="text-textHovered">{name}...</div>
-                    <div className="text-xs">{user?.uid.slice(0, 8)}...</div>
-                </div>
-            </Button>
+            {isLoading ? (
+                '..'
+            ) : (
+                <Button className={'mr-1 flex h-10  w-14 max-w-[132px] p-0 text-sm'}>
+                    <img
+                        src={avatar}
+                        alt=""
+                        className="mr-1 flex h-8 w-8 justify-end rounded-full"
+                        onClick={handleSignOutClicked}
+                    ></img>
+                    <div className="pl-1">
+                        <div className="text-textHovered">{name}...</div>
+                        <div className="text-xs">{user?.uid.slice(0, 8)}...</div>
+                    </div>
+                </Button>
+            )}
             <div className="flex h-8 w-8">
                 <Button className={'h-8 w-8 p-0'}>
                     <ToggleButtonOnOff />

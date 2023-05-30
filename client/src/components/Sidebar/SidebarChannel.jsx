@@ -11,11 +11,15 @@ import { HashtagIcon, PlusIcon } from '../../img';
 import User from '../Items/User';
 import { useAuthState } from 'react-firebase-hooks/auth';
 function SidebarChannel() {
+    
     const serverName = useSelector(selectServerName);
     const serverId = useSelector(selectServerId);
     const [channelItems] = useCollection(db.collection(`serverItems`).doc(`${serverId}`).collection('channels'));
     const [user] = useAuthState(auth);
+
     var creatorId = user?.uid;
+
+
     const handleAddChannel = () => {
         const channelName = prompt('Enter new Channel Name');
         if (channelName) {

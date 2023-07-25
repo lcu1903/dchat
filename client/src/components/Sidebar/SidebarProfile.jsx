@@ -3,7 +3,7 @@ import styles from '../../styles';
 import Button from '../Button';
 import User from '../Items/User';
 
-function SidebarServer() {
+function SidebarProfile() {
     return (
         <div className={`${styles.sidebarDefault}`}>
             {/* SearchBar */}
@@ -46,4 +46,4 @@ function SidebarServer() {
         </div>
     );
 }
-export default SidebarServer;
+export default SidebarProfile;

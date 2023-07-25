@@ -4,12 +4,13 @@ import 'tippy.js/dist/tippy.css';
 import styles from '../../styles';
 import Button from '../Button';
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import routes from '../../config';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
+import { FriendListContext } from '../../contexts/FriendlistContext';
 
 function Header() {
     const [user] = useAuthState(auth);
@@ -17,6 +18,9 @@ function Header() {
     const redirect = useEffect(() => {
         !user && navigate(routes.home);
     });
+
+    const friendListComponent = useContext(FriendListContext);
+
     return (
         <>
             {redirect}
@@ -34,10 +38,30 @@ function Header() {
                     <div className={`divider bg-divider mx-2 h-6 w-[1px] `}></div>
 
                     {/*  */}
-                    <Button className={'mx-2'}>Online</Button>
-                    <Button className={'mx-2'}>All</Button>
-                    <Button className={'mx-2'}>Pending</Button>
-                    <Button className={'mx-2'}>Blocked</Button>
+                    <Button
+                        className={'mx-2'}
+                        onClick={() => {
+                            friendListComponent.handleAllFriendListClicked();
+                        }}
+                    >
+                        All
+                    </Button>
+                    <Button
+                        className={'mx-2'}
+                        onClick={() => {
+                            friendListComponent.handlePendingFriendListClicked();
+                        }}
+                    >
+                        Pending
+                    </Button>
+                    <Button
+                        className={'mx-2'}
+                        onClick={() => {
+                            friendListComponent.handleSuggestFriendClicked();
+                        }}
+                    >
+                        Suggests
+                    </Button>
                     <Button className={'mx-2'} bgColor={styles.greenLime} color={styles.textHovered}>
                         Add Friend
                     </Button>

@@ -1,14 +1,20 @@
 import Header from '../components/header/Header';
-import SidebarServer from '../components/Sidebar/SidebarServer';
+import ProfileBody from '../components/ProfileBody';
+
+import SidebarProfile from '../components/Sidebar/SidebarProfile';
+import { FriendListProvider } from '../contexts/FriendlistContext';
 
 import styles from '../styles';
 
 function Profile() {
     return (
-        <div className="font-fontDisplay flex  text-lg max-h-screen ">
-            <SidebarServer />
+        <div className="font-fontDisplay flex text-lg h-screen  ">
+            <SidebarProfile />
             <div className={`bg-content ${styles.contentWidth} `}>
-                <Header />
+                <FriendListProvider>
+                    <Header />
+                    <ProfileBody />
+                </FriendListProvider>
             </div>
         </div>
     );

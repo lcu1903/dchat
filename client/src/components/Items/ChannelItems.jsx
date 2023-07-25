@@ -16,7 +16,7 @@ function ChannelItems({ name, id, icon, creatorId }) {
     const serverId = useSelector(selectServerId);
     const channelId = useSelector(selectChannelId);
 
-    const setChanel = () => {
+    const setChannel = () => {
         dispatch(
             setChannelInfo({
                 channelId: id,
@@ -33,7 +33,7 @@ function ChannelItems({ name, id, icon, creatorId }) {
         );
     };
     const handleChannelClicked = () => {
-        setChanel();
+        setChannel();
         navigate(`/channel/${serverId}/${id}`);
     };
     return (

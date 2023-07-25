@@ -40,7 +40,7 @@ function LogIn() {
         e.preventDefault();
         signInWithPopup(auth, provider)
             .then((userCredential) => {
-                navigate(routes.channel);
+                navigate(routes.home);
 
                 //Add user to database
                 db.collection('users').doc(userCredential.user.uid).set({
@@ -49,6 +49,8 @@ function LogIn() {
                     userPhotoURL: userCredential.user.photoURL,
                     userEmail: userCredential.user.email,
                 });
+                db.collection('users').doc(userCredential.user.uid).collection('friends').add({});
+                db.collection('users').doc(userCredential.user.uid).collection('pendingFriends').add({});
             })
             .catch((error) => alert(error.message));
         setUser();

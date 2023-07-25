@@ -8,7 +8,7 @@ import Chat from './Chat';
 function Channels() {
     const channelName = useSelector(selectChannelName);
     return (
-        <div className="font-fontDisplay flex h-screen text-lg max-h-screen">
+        <div className="font-fontDisplay flex h-screen text-lg">
             <div>
                 <SidebarChannel />
             </div>

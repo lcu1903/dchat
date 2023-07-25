@@ -19,6 +19,9 @@
     .hero-bg {
         @apply bg-[url('./img/signIn.webp')];
     }
+    .friend-list{
+        @apply  ml-[30px] mr-5 p-0 h-[8vh] w-3/4
+    }
 }
 
 .root {

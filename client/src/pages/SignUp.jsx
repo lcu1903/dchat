@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import routes from '../config';
 import styles from '../styles';
 
 function SignUp() {
@@ -15,9 +14,12 @@ function SignUp() {
                 db.collection('users').doc(userCredential.user.uid).set({
                     username: username,
                     userId: userCredential.user.uid,
-                    userPhotoURL: null,
+                    userPhotoURL:
+                        'https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg',
                     userEmail: email,
                 });
+                db.collection('users').doc(userCredential.user.uid).collection('friends').add({});
+                db.collection('users').doc(userCredential.user.uid).collection('pendingFriends').add({});
 
                 setEmail('');
                 setPassword('');
@@ -84,7 +86,7 @@ function SignUp() {
                             ></input>
                         </div>
                         <div className="flex items-center justify-center">
-                            <button className={`${styles.signInBtnDefault} h-2/3 w-1/2 mx-10  `} type="submit">
+                            <button className={`${styles.signInBtnDefault} mx-10 h-2/3 w-1/2  `} type="submit">
                                 Sign up
                             </button>
                         </div>

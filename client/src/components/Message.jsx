@@ -2,8 +2,8 @@ import moment from 'moment';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase';
 import { Trash2 } from 'react-feather';
-import { selectChannelId, selectServerId, setChannelInfo } from '../features/channelSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { selectChannelId, selectServerId } from '../features/channelSlice';
+import { useSelector } from 'react-redux';
 import Button from './Button';
 function Message({ id, message, timestamp, name, photoURL, email }) {
     const [user] = useAuthState(auth);

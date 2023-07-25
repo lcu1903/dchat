@@ -33,6 +33,7 @@ const Button = ({
     }
     return (
         <div
+        
             style={{ backgroundColor: bgColor, color}}
             onClick={onClick}
             className={classes}

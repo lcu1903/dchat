@@ -79,7 +79,7 @@ function Chat() {
         });
     };
     return (
-        <div className="max-h-2">
+        <div>
             <div className={`scrollbar-hide flex-grow overflow-y-scroll ${styles.chatHeight}`}>
                 {message?.docs.map((doc) => {
                     const { message, timestamp, name, photoURL, email } = doc.data();

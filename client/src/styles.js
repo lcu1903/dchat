@@ -28,6 +28,8 @@ const styles = {
     inputFormDefault: 'flex w-full flex-col',
     inputContentDefault: 'text-text flex h-16 w-full flex-col px-4',
     inputDefault: 'bg-content h-full rounded-sm py-2 outline-none',
+
+    allFriendPageHeight:'max-h-[calc(100vh_-_52px)]',
 };
 
 export default styles;

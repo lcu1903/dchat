@@ -20,6 +20,7 @@ function SignUp() {
                 });
                 db.collection('users').doc(userCredential.user.uid).collection('friends').add({});
                 db.collection('users').doc(userCredential.user.uid).collection('pendingFriends').add({});
+                db.collection('users').doc(userCredential.user.uid).collection('sentFriends').add({});
 
                 setEmail('');
                 setPassword('');

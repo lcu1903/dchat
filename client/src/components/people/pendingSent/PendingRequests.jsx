@@ -1,28 +1,24 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../../../firebase';
-
-import { useCollection } from 'react-firebase-hooks/firestore';
-
+import { useEffect, useState } from 'react';
 import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import { defaultAvatar } from '../../../img';
-function AllFriends() {
+
+function PendingRequests() {
     const [user] = useAuthState(auth);
-
     const userRef = collection(db, 'users');
-
-    const [friends] = useCollection(db.collection('users').doc(user?.uid).collection('friends'));
-
-    const friendList = friends?.docs.map((doc) => {
+    const [pendingFriends, setPendingFriends] = useState([]);
+    const [pending] = useCollection(db.collection('users').doc(user?.uid).collection('pendingFriends'));
+    const pendingList = pending?.docs.map((doc) => {
         return doc.id;
     });
-
-    const [allFriendList, setAllFriendList] = useState([]);
     useEffect(() => {
-        if (friendList) {
-            const q = query(userRef, where('userId', 'in', friendList));
+        if (pendingList) {
+            const q = query(userRef, where('userId', 'in', pendingList));
             const querySnapshot = getDocs(q);
+            var countList = pendingList.length;
             querySnapshot.then((doc) => {
                 doc.docs.map((doc) => {
                     var avatar = doc.data().userPhotoURL;
@@ -32,22 +28,21 @@ function AllFriends() {
                     const id = doc.data().userId;
                     const name = doc.data().username;
                     
-                    if (allFriendList.length < friendList.length) {
-                    return setAllFriendList((prev) => [...prev, { avatar, id, name }]);
+                    if (pendingFriends.length < countList) {
+                        return setPendingFriends((prev) => [...prev, { avatar, id, name }]);
                     }
                     return 0;
                 });
             });
         }
     });
-
     return (
-        <div className="mt-1 max-h-[75vh] w-[75vw] overflow-auto pb-1 pr-1">
-            {allFriendList?.map((elements) => {
-                return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar} />;
+        <div>
+            {pendingFriends.map((elements) => {
+                return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar}></FriendItems>;
             })}
         </div>
     );
 }
 
-export default AllFriends;
+export default PendingRequests;

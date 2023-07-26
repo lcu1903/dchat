@@ -1,7 +1,9 @@
 
 import AllFriends from './friends/AllFriends';
-import PendingFriendRequests from './friends/PendingFriendRequests';
+import PendingSentFriendRequests from './pendingSent/PendingSentFriendRequests';
+
 import StrangersList from './strangers/StrangersList';
 
 
-export {AllFriends, PendingFriendRequests,StrangersList};
+
+export {AllFriends, PendingSentFriendRequests,StrangersList};

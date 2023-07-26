@@ -49,10 +49,10 @@ function Header() {
                     <Button
                         className={'mx-2'}
                         onClick={() => {
-                            friendListComponent.handlePendingFriendListClicked();
+                            friendListComponent.handlePendingSentFriendListClicked();
                         }}
                     >
-                        Pending
+                        Pending - Sent
                     </Button>
                     <Button
                         className={'mx-2'}

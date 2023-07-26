@@ -8,7 +8,7 @@ function FriendListProvider({ children }) {
     const handleAllFriendListClicked = () =>{
         setFriendListComponent(1)
     }
-    const handlePendingFriendListClicked = () =>{
+    const handlePendingSentFriendListClicked = () =>{
         setFriendListComponent(2)
     }
     const handleSuggestFriendClicked = () =>{
@@ -20,7 +20,7 @@ function FriendListProvider({ children }) {
     const value = { 
         friendListComponent,
         handleAllFriendListClicked,
-        handlePendingFriendListClicked,
+        handlePendingSentFriendListClicked,
         handleSuggestFriendClicked,
     };
     return (<FriendListContext.Provider value={value}>

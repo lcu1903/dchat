@@ -22,6 +22,9 @@
     .friend-list{
         @apply  ml-[30px] mr-5 p-0 h-[8vh] w-3/4
     }
+    .friend-button{
+      @apply   h-6 w-1/12 flex justify-center text-textHovered rounded-sm transition-all duration-300 items-center
+    }
 }
 
 .root {

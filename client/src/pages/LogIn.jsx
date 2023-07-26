@@ -51,6 +51,7 @@ function LogIn() {
                 });
                 db.collection('users').doc(userCredential.user.uid).collection('friends').add({});
                 db.collection('users').doc(userCredential.user.uid).collection('pendingFriends').add({});
+                db.collection('users').doc(userCredential.user.uid).collection('sentFriends').add({});
             })
             .catch((error) => alert(error.message));
         setUser();
@@ -102,9 +103,7 @@ function LogIn() {
                 {!user ? (
                     <div className={`${styles.inputBoxDefault}`}>
                         <form className={`${styles.inputFormDefault}`} onSubmit={signIn}>
-                            <h1 className={`${styles.signInTitleDefault}`}>
-                                Login with email
-                            </h1>
+                            <h1 className={`${styles.signInTitleDefault}`}>Login with email</h1>
                             <div className={`${styles.inputContentDefault}`}>
                                 Enter your email
                                 <input
@@ -124,7 +123,7 @@ function LogIn() {
                                 ></input>
                             </div>
                             <div className="flex items-center justify-center">
-                                <button className={`${styles.signInBtnDefault} h-2/3 w-1/2 mx-10   `} type="submit">
+                                <button className={`${styles.signInBtnDefault} mx-10 h-2/3 w-1/2   `} type="submit">
                                     Login
                                 </button>
                             </div>

@@ -21,6 +21,7 @@ module.exports = {
                 ChatInput: '#383a40',
                 blurMessage: '#61626b',
                 trashBg: '#ed4245',
+                greenLime: '#368044',
             },
             fontFamily: {
                 fontDisplay: ['gg sans', 'Noto Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],

@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-
 import { FriendListContext } from '../contexts/FriendlistContext';
-import { AllFriends, PendingFriendRequests, StrangersList } from './people';
+import { AllFriends, PendingSentFriendRequests, StrangersList } from './people';
 
 function ProfileBody() {
     var ComponentToRender;
@@ -14,7 +13,7 @@ function ProfileBody() {
             ComponentToRender = AllFriends;
             break;
         case 2:
-            ComponentToRender = PendingFriendRequests;
+            ComponentToRender = PendingSentFriendRequests;
             break;
         case 3:
             ComponentToRender = StrangersList;
@@ -26,7 +25,6 @@ function ProfileBody() {
     return (
         <div className="flex">
             <ComponentToRender></ComponentToRender>
-            
         </div>
     );
 }

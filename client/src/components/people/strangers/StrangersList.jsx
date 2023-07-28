@@ -44,17 +44,19 @@ function StrangersList() {
     });
 
     return (
-        <div className="bg-sidebar mt-1 h-full w-[50vw] overflow-auto">
+        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-2 h-full min-h-[20vh] w-[75vw] max-w-[50vw]">
+            PEOPLE YOU MAY KNOW
             {strangersList?.map((elements) => {
                 return (
-                    <div className="flex items-center pb-1 pr-3" key={elements.id}>
-                        <FriendItems name={elements.name} avatar={elements.avatar} />
-                        <button
-                            className="friend-button bg-greenLime hover:bg-green "
-                            onClick={() => console.log('add')}
-                        >
-                            <PlusIcon />
-                        </button>
+                    <div className="flex items-center pb-2 pr-3 pt-1" key={elements.id}>
+                        <FriendItems name={elements.name} avatar={elements.avatar}>
+                            <button
+                                className="friend-button bg-greenLime hover:bg-green ml-[73.8%]"
+                                onClick={() => console.log('add')}
+                            >
+                                <PlusIcon />
+                            </button>
+                        </FriendItems>
                     </div>
                 );
             })}

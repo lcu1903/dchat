@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { defaultAvatar } from '../../../img';
+import { CheckIcon, XIcon, defaultAvatar } from '../../../img';
 
 function PendingRequests() {
     const [user] = useAuthState(auth);
@@ -27,7 +27,7 @@ function PendingRequests() {
                     }
                     const id = doc.data().userId;
                     const name = doc.data().username;
-                    
+
                     if (pendingFriends.length < countList) {
                         return setPendingFriends((prev) => [...prev, { avatar, id, name }]);
                     }
@@ -37,9 +37,21 @@ function PendingRequests() {
         }
     });
     return (
-        <div>
+        <div className="list text-itemsTheme hover-shadow-blue-outline  ">
+            PENDING
             {pendingFriends.map((elements) => {
-                return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar}></FriendItems>;
+                return (
+                    <div className="pt-2  " key={elements.id}>
+                        <FriendItems name={elements.name} avatar={elements.avatar}>
+                            <button className="friend-button bg-greenLime hover:bg-green ml-[58%]  ">
+                                <CheckIcon />
+                            </button>
+                            <button className="friend-button bg-darkerRed hover:bg-red ml-[5%]  ">
+                                <XIcon />
+                            </button>
+                        </FriendItems>
+                    </div>
+                );
             })}
         </div>
     );

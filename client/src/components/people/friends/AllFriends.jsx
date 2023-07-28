@@ -31,9 +31,9 @@ function AllFriends() {
                     }
                     const id = doc.data().userId;
                     const name = doc.data().username;
-                    
+
                     if (allFriendList.length < friendList.length) {
-                    return setAllFriendList((prev) => [...prev, { avatar, id, name }]);
+                        return setAllFriendList((prev) => [...prev, { avatar, id, name }]);
                     }
                     return 0;
                 });
@@ -42,7 +42,8 @@ function AllFriends() {
     });
 
     return (
-        <div className="mt-1 max-h-[75vh] w-[75vw] overflow-auto pb-1 pr-1">
+        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-1 max-h-[75vh] min-h-[20vh] overflow-auto pb-1 pr-1">
+            YOUR FRIENDS
             {allFriendList?.map((elements) => {
                 return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar} />;
             })}

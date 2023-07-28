@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { defaultAvatar } from '../../../img';
+import { XIcon, defaultAvatar } from '../../../img';
 function SentFriendRequests() {
     const [user] = useAuthState(auth);
     const userRef = collection(db, 'users');
@@ -17,7 +17,7 @@ function SentFriendRequests() {
         if (sentList) {
             const q = query(userRef, where('userId', 'in', sentList));
             const querySnapshot = getDocs(q);
-          
+
             var countList = sentList.length;
             querySnapshot.then((doc) => {
                 doc.docs.map((doc) => {
@@ -36,9 +36,19 @@ function SentFriendRequests() {
         }
     });
     return (
-        <div>
+        <div className="list text-itemsTheme hover-shadow-blue-outline">
+            SENT
             {sentFriends.map((elements) => {
-                return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar}></FriendItems>;
+                return (
+                    <div key={elements.id}>
+                        <FriendItems name={elements.name} avatar={elements.avatar}>
+                            <button className="friend-button bg-darkerRed hover:bg-red ml-[73%]   ">
+                                <XIcon />
+                            </button>
+                        </FriendItems>
+             
+                    </div>
+                );
             })}
         </div>
     );

@@ -8,7 +8,7 @@ import styles from '../styles';
 
 function Profile() {
     return (
-        <div className="font-fontDisplay flex text-lg h-screen  ">
+        <div className="font-fontDisplay flex text-lg h-screen overflow-hidden ">
             <SidebarProfile />
             <div className={`bg-content ${styles.contentWidth} `}>
                 <FriendListProvider>

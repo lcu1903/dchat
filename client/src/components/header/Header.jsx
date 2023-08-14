@@ -38,33 +38,35 @@ function Header() {
                     <div className={`divider bg-divider mx-2 h-6 w-[1px] `}></div>
 
                     {/*  */}
-                    <Button
-                        className={'mx-2'}
-                        onClick={() => {
-                            friendListComponent.handleAllFriendListClicked();
-                        }}
-                    >
-                        All
-                    </Button>
-                    <Button
-                        className={'mx-2'}
-                        onClick={() => {
-                            friendListComponent.handlePendingSentFriendListClicked();
-                        }}
-                    >
-                        Pending - Sent
-                    </Button>
-                    <Button
-                        className={'mx-2'}
-                        onClick={() => {
-                            friendListComponent.handleSuggestFriendClicked();
-                        }}
-                    >
-                        Suggests
-                    </Button>
-                    <Button className={'mx-2'} bgColor={styles.greenLime} color={styles.textHovered}>
-                        Add Friend
-                    </Button>
+                    <div className='flex'>
+                        <Button
+                            className={'mx-2'}
+                            onClick={() => {
+                                friendListComponent.handleAllFriendListClicked();
+                            }}
+                        >
+                            All
+                        </Button>
+                        <Button
+                            className={'mx-2'}
+                            onClick={() => {
+                                friendListComponent.handlePendingSentFriendListClicked();
+                            }}
+                        >
+                            Pending - Sent
+                        </Button>
+                        <Button
+                            className={'mx-2'}
+                            onClick={() => {
+                                friendListComponent.handleSuggestFriendClicked();
+                            }}
+                        >
+                            Suggests
+                        </Button>
+                        <Button className={'mx-2'} bgColor={styles.greenLime} color={styles.textHovered}>
+                            Add Friend
+                        </Button>
+                    </div>
                 </div>
                 <div className=" bg-content text-text flex h-full w-[100px] items-center justify-between shadow-2xl ">
                     <div className="flex items-center">

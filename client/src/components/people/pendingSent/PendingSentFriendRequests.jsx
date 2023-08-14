@@ -2,12 +2,12 @@ import SentFriendRequests from './SentFriendRequests';
 import PendingRequests from './PendingRequests';
 function PendingSentFriendRequests() {
     return (
-        <div className=" max-h-[100vh] w-[75vw] max-w-[50vw] ">
-            <div className={'friend-list h-full max-h-[50vh] pb-2 pt-2'}>
+        <div className="flex flex-col max-w-[50vw]  ">
+            <div className={'ml-[30px] mr-5 mt-2 '}>
                 
                 <PendingRequests />
             </div>
-            <div className={'friend-list h-full max-h-[50vh] pb-2 pt-2'}>
+            <div className={'ml-[30px] mr-5 mt-2 '}>
                 
                 <SentFriendRequests></SentFriendRequests>
             </div>

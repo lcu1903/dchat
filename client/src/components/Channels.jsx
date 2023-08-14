@@ -14,7 +14,7 @@ function Channels() {
             </div>
 
             <div className={`${styles.contentWidth} bg-content shadow`}>
-                <div className={`${styles.headerDefault} text-textHovered`}>
+                <div className={`${styles.headerDefault} text-textHovered `}>
                     <div className="text-text pr-2 ">
                         <HashtagIcon />
                     </div>

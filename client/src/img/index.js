@@ -187,14 +187,33 @@ const XIcon = ({ width = '1.2rem', height = '1.2rem', className }) => (
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        
     >
         <line x1="18" y1="6" x2="6" y2="18" />
         <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
 );
+const RemoveFriendIcon = ({ width = '1.2rem', height = '1.2rem', className }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+        width={width}
+        height={height}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="8.5" cy="7" r="4" />
+        <line x1="18" y1="8" x2="23" y2="13" />
+        <line x1="23" y1="8" x2="18" y2="13" />
+    </svg>
+);
 const defaultAvatar = 'https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg';
 export {
+    RemoveFriendIcon,
     XIcon,
     CheckIcon,
     defaultAvatar,

@@ -5,6 +5,7 @@ import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { CheckIcon, XIcon, defaultAvatar } from '../../../img';
+import { handleAcceptFriend, handleDeclineFriend } from '../../../features/friendRelationshipRequests';
 
 function PendingRequests() {
     const [user] = useAuthState(auth);
@@ -12,7 +13,7 @@ function PendingRequests() {
     const [pendingFriends, setPendingFriends] = useState([]);
     const [pending] = useCollection(db.collection('users').doc(user?.uid).collection('pendingFriends'));
     const pendingList = pending?.docs.map((doc) => {
-        return doc.id;
+        return doc?.id;
     });
     useEffect(() => {
         if (pendingList) {
@@ -28,7 +29,7 @@ function PendingRequests() {
                     const id = doc.data().userId;
                     const name = doc.data().username;
 
-                    if (pendingFriends.length < countList) {
+                    if (pendingFriends.length < countList - 1) {
                         return setPendingFriends((prev) => [...prev, { avatar, id, name }]);
                     }
                     return 0;
@@ -41,12 +42,24 @@ function PendingRequests() {
             PENDING
             {pendingFriends.map((elements) => {
                 return (
-                    <div className="pt-2  " key={elements.id}>
+                    <div className="pt-2" key={elements.id}>
                         <FriendItems name={elements.name} avatar={elements.avatar}>
-                            <button className="friend-button bg-greenLime hover:bg-green ml-[58%]  ">
+                            <button
+                                className="friend-button bg-greenLime hover:bg-green ml-[20%] "
+                                onClick={() => {
+                                    handleAcceptFriend(elements.id, user.uid);
+                                    pendingFriends.splice(pendingFriends.indexOf(elements), 1);
+                                }}
+                            >
                                 <CheckIcon />
                             </button>
-                            <button className="friend-button bg-darkerRed hover:bg-red ml-[5%]  ">
+                            <button
+                                className="friend-button bg-darkerRed hover:bg-red  "
+                                onClick={() => {
+                                    handleDeclineFriend(elements.id, user.uid);
+                                    pendingFriends.splice(pendingFriends.indexOf(elements), 1);
+                                }}
+                            >
                                 <XIcon />
                             </button>
                         </FriendItems>

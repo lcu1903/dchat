@@ -38,8 +38,9 @@ function Inbox() {
                     ))}
                 </div>
                 <button
-                    className={'icon-box text-green hover:bg-green hover:text-textHovered mx-2'}
+                    className={'icon-box text-green hover:bg-green hover:text-textHovered mx-2 '}
                     onClick={handleAddServer}
+                    
                 >
                     <PlusIcon />
                 </button>

@@ -6,7 +6,11 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { defaultAvatar } from '../../../img';
+import { RemoveFriendIcon, defaultAvatar } from '../../../img';
+import { handleRemoveFriend } from '../../../features/friendRelationshipRequests';
+
+import React from 'react';
+
 function AllFriends() {
     const [user] = useAuthState(auth);
 
@@ -32,7 +36,7 @@ function AllFriends() {
                     const id = doc.data().userId;
                     const name = doc.data().username;
 
-                    if (allFriendList.length < friendList.length) {
+                    if (allFriendList.length < friendList.length - 1) {
                         return setAllFriendList((prev) => [...prev, { avatar, id, name }]);
                     }
                     return 0;
@@ -42,10 +46,22 @@ function AllFriends() {
     });
 
     return (
-        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-1 max-h-[75vh] min-h-[20vh] overflow-auto pb-1 pr-1">
+        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-2  overflow-auto">
             YOUR FRIENDS
             {allFriendList?.map((elements) => {
-                return <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar} />;
+                return (
+                    <FriendItems key={elements.id} name={elements.name} avatar={elements.avatar}>
+                        <button
+                            className="friend-button bg-darkerRed hover:bg-red ml-[25%] "
+                            onClick={() => {
+                                handleRemoveFriend(elements.id, user.uid);
+                                allFriendList.splice(allFriendList.indexOf(elements), 1);
+                            }}
+                        >
+                            <RemoveFriendIcon />
+                        </button>
+                    </FriendItems>
+                );
             })}
         </div>
     );

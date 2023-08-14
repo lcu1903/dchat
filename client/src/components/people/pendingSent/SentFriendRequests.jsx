@@ -5,6 +5,7 @@ import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { XIcon, defaultAvatar } from '../../../img';
+import { handleRemoveSentRequest } from '../../../features/friendRelationshipRequests';
 function SentFriendRequests() {
     const [user] = useAuthState(auth);
     const userRef = collection(db, 'users');
@@ -17,8 +18,6 @@ function SentFriendRequests() {
         if (sentList) {
             const q = query(userRef, where('userId', 'in', sentList));
             const querySnapshot = getDocs(q);
-
-            var countList = sentList.length;
             querySnapshot.then((doc) => {
                 doc.docs.map((doc) => {
                     var avatar = doc.data().userPhotoURL;
@@ -27,7 +26,7 @@ function SentFriendRequests() {
                     }
                     const id = doc.data().userId;
                     const name = doc.data().username;
-                    if (sentFriends.length < countList) {
+                    if (sentFriends.length < sentList.length - 1) {
                         return setSentFriends((prev) => [...prev, { avatar, id, name }]);
                     }
                     return 0;
@@ -42,11 +41,15 @@ function SentFriendRequests() {
                 return (
                     <div key={elements.id}>
                         <FriendItems name={elements.name} avatar={elements.avatar}>
-                            <button className="friend-button bg-darkerRed hover:bg-red ml-[73%]   ">
+                            <button
+                                className="friend-button bg-darkerRed hover:bg-red ml-[25%]     "
+                                onClick={() =>{handleRemoveSentRequest(elements.id, user.uid)
+                                        sentFriends.splice(sentFriends.indexOf(elements),1)
+                                    }}
+                            >
                                 <XIcon />
                             </button>
                         </FriendItems>
-             
                     </div>
                 );
             })}

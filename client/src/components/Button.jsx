@@ -15,7 +15,7 @@ const Button = ({
     flex 
     min-w-max
     px-2 py-0.5 
-    hover:text-textHovered      hover:bg-hovered
+    hover:text-textHovered      hover:bg-hovered    
     cursor-pointer   select-none      items-center     whitespace-nowrap
     rounded    
     ${className ?? ""}

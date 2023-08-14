@@ -37,16 +37,16 @@ function ChannelItems({ name, id, icon, creatorId }) {
         navigate(`/channel/${serverId}/${id}`);
     };
     return (
-        <div className="Channels mb-[1px] flex h-9 ">
+        <div className="Channels mb-[1px] flex h-9  ">
             <div className={`${styles.channelDefault} `}>
-                <div className="flex w-full items-center" onClick={handleChannelClicked}>
+                <div className="flex w-full items-center " onClick={handleChannelClicked}>
                     <div className="pr-1">{icon}</div>
                     <div>{name}</div>
                 </div>
                 {user?.uid === creatorId && (
                     <div>
                         <Button
-                            className="hover:text-textHovered hover:bg-trashBg ml-auto cursor-pointer rounded-sm p-1 opacity-20 hover:opacity-100"
+                            className="hover:text-textHovered hover:bg-trashBg ml-auto cursor-pointer rounded-sm p-1 opacity-20 hover:opacity-100 "
                             disabled={!channelId}
                             onClick={() => {
                                 db.collection('serverItems')

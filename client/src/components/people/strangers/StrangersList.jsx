@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import FriendItems from './../../Items/FriendItems';
 import { useEffect, useState } from 'react';
 import { PlusIcon, defaultAvatar } from '../../../img';
+import { handleAddFriend } from '../../../features/friendRelationshipRequests';
 
 function StrangersList() {
     const [user] = useAuthState(auth);
@@ -17,10 +18,12 @@ function StrangersList() {
         return doc.id;
     });
     const [strangersList, setStrangersList] = useState([]);
-
+  
+   
     useEffect(() => {
         if (friendList) {
             const q = query(userRef, where('userId', 'not-in', friendList));
+            
             const querySnapshot = getDocs(q);
 
             querySnapshot.then((doc) => {
@@ -44,15 +47,18 @@ function StrangersList() {
     });
 
     return (
-        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-2 h-full min-h-[20vh] w-[75vw] max-w-[50vw]">
+        <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-2  max-w-[50vw]">
             PEOPLE YOU MAY KNOW
             {strangersList?.map((elements) => {
                 return (
-                    <div className="flex items-center pb-2 pr-3 pt-1" key={elements.id}>
+                    <div className="flex items-center pb-2 pr-3 pt-1 " key={elements.id}>
                         <FriendItems name={elements.name} avatar={elements.avatar}>
                             <button
-                                className="friend-button bg-greenLime hover:bg-green ml-[73.8%]"
-                                onClick={() => console.log('add')}
+                                className="friend-button bg-greenLime hover:bg-green ml-[25%] "
+                                onClick={() => {
+                                    handleAddFriend(elements.id, user.uid);
+                                    strangersList.splice(strangersList.indexOf(elements), 1);
+                                }}
                             >
                                 <PlusIcon />
                             </button>

@@ -38,11 +38,12 @@ function Header() {
                     <div className={`divider bg-divider mx-2 h-6 w-[1px] `}></div>
 
                     {/*  */}
-                    <div className='flex'>
+                    <div className="flex">
                         <Button
                             className={'mx-2'}
                             onClick={() => {
                                 friendListComponent.handleAllFriendListClicked();
+                                navigate('/channel');
                             }}
                         >
                             All
@@ -51,6 +52,7 @@ function Header() {
                             className={'mx-2'}
                             onClick={() => {
                                 friendListComponent.handlePendingSentFriendListClicked();
+                                navigate('/channel');
                             }}
                         >
                             Pending - Sent
@@ -59,6 +61,7 @@ function Header() {
                             className={'mx-2'}
                             onClick={() => {
                                 friendListComponent.handleSuggestFriendClicked();
+                                navigate('/channel');
                             }}
                         >
                             Suggests

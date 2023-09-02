@@ -12,10 +12,10 @@ const styles = {
     chatMessageWidth: 'w-[calc(100vw_-_72px_-_240px_-_90px)]',
     chatHeight: 'h-[calc(100vh_-_48px_-_70px)]',
 
-    sidebarDefault: 'bg-sidebar flex flex-wrap h-screen w-60',
+    sidebarDefault: 'bg-sidebar flex flex-wrap max-h-screen w-60 h-screen',
     sidebarHeaderDefault: 'flex h-12 w-60 items-center px-[10px] shadow text-text',
     sidebarContentDefault: 'flex flex-col ml-2 pr-[10px] text-text w-56 h-[calc(100vh_-_102px)]',
-    headerDefault: 'flex font-fontDisplay px-2 shadow h-12 items-center',
+    headerDefault: 'bg-content flex font-fontDisplay px-2 shadow h-12 items-center w-full',
     channelDefault: 'flex w-56 h-9 hover:bg-hovered items-center pt-2 rounded px-2',
 
     signInTitleDefault: 'text-textHovered flex h-20 items-center justify-center text-xl',
@@ -26,7 +26,7 @@ const styles = {
 
     inputBoxDefault: 'bg-hovered flex flex-col h-[250px] justify-center rounded-sm',
     inputFormDefault: 'flex w-full flex-col',
-    inputContentDefault: 'text-text flex h-16 w-full flex-col px-4',
+    inputContentDefault: 'text-text flex h-max w-full flex-col px-4 py-3',
     inputDefault: 'bg-content h-full rounded-sm py-2 outline-none',
 
     allFriendPageHeight:'max-h-[calc(100vh_-_52px)]',

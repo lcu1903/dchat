@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import FriendItems from './../../Items/FriendItems';
 import { useEffect, useState } from 'react';
 import { PlusIcon, defaultAvatar } from '../../../img';
-import { handleAddFriend } from '../../../features/friendRelationshipRequests';
+import { handleAddFriend } from '../../../action/friendRelationshipRequests';
 
 function StrangersList() {
     const [user] = useAuthState(auth);
@@ -18,12 +18,21 @@ function StrangersList() {
         return doc.id;
     });
     const [strangersList, setStrangersList] = useState([]);
-  
-   
+
+    const [pending] = useCollection(db.collection('users').doc(user?.uid).collection('pendingFriends'));
+    const pendingList = pending?.docs.map((doc) => {
+        return doc?.id;
+    });
+
+    const [sent] = useCollection(db.collection('users').doc(user?.uid).collection('sentFriends'));
+    const sentList = sent?.docs.map((doc) => {
+        return doc.id;
+    });
+
     useEffect(() => {
         if (friendList) {
             const q = query(userRef, where('userId', 'not-in', friendList));
-            
+
             const querySnapshot = getDocs(q);
 
             querySnapshot.then((doc) => {
@@ -53,15 +62,28 @@ function StrangersList() {
                 return (
                     <div className="flex items-center pb-2 pr-3 pt-1 " key={elements.id}>
                         <FriendItems name={elements.name} avatar={elements.avatar}>
-                            <button
-                                className="friend-button bg-greenLime hover:bg-green ml-[25%] "
-                                onClick={() => {
-                                    handleAddFriend(elements.id, user.uid);
-                                    strangersList.splice(strangersList.indexOf(elements), 1);
-                                }}
-                            >
-                                <PlusIcon />
-                            </button>
+                            {pendingList.includes(elements.id) || sentList.includes(elements.id) ? (
+                                <button
+                                    className="friend-button bg-greenLime text-textHovered ml-[25%] rounded-sm   "
+                                    onClick={() => {
+                                        handleAddFriend(elements.id, user.uid);
+                                        strangersList.splice(strangersList.indexOf(elements), 1);
+                                    }}
+                                    disabled={true}
+                                >
+                                    <PlusIcon />
+                                </button>
+                            ) : (
+                                <button
+                                    className="friend-button bg-greenLime hover:bg-green text-textHovered ml-[25%] rounded-sm   "
+                                    onClick={() => {
+                                        handleAddFriend(elements.id, user.uid);
+                                        strangersList.splice(strangersList.indexOf(elements), 1);
+                                    }}
+                                >
+                                    <PlusIcon />
+                                </button>
+                            )}
                         </FriendItems>
                     </div>
                 );

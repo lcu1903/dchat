@@ -4,9 +4,9 @@ import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import routes from '../config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserInfo } from '../features/userSlice';
+import { setUserInfo } from '../reducer/userSlice';
 import styles from '../styles';
 
 function LogIn() {
@@ -14,25 +14,26 @@ function LogIn() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [username,setUsername] = useState();
+   
 
-    var name = '';
-    const id = user?.uid;
-    if (user) {
-        name = user.displayName;
-    }
-    if (user) {
-        db.collection('users')
-            .doc(`${id}`)
-            .get()
-            .then((doc) => {
-                return (name = doc.data()?.username);
-            });
-    }
+    useEffect(() => {
+        if (user) {
+            db.collection('users')
+                .doc(user.uid)
+                .get()
+                .then((doc) => {
+                    setUsername(doc.data()?.username)
+                });
+        }
+    });
+
+   
     const setUser = () => {
         dispatch(
             setUserInfo({
-                username: name,
-                userId: id,
+                username: username,
+                userId: user?.uid,
             }),
         );
     };
@@ -86,15 +87,16 @@ function LogIn() {
 
     return (
         <div className={`${styles.signInDefault}`}>
-            <div className={`${styles.signInContentDefault} h-max`}>
+            <div className={`${styles.signInContentDefault} h-max shadow-2xl`}>
                 <button
                     className={`${styles.signInBtnDefault}`}
                     onClick={
                         !user
                             ? logIn
                             : () => {
-                                  setUser();
-                                  navigate(routes.serverChannel);
+                                
+                                setUser();                          
+                                navigate(routes.serverChannel);                            
                               }
                     }
                 >
@@ -104,23 +106,44 @@ function LogIn() {
                     <div className={`${styles.inputBoxDefault}`}>
                         <form className={`${styles.inputFormDefault}`} onSubmit={signIn}>
                             <h1 className={`${styles.signInTitleDefault}`}>Login with email</h1>
-                            <div className={`${styles.inputContentDefault}`}>
-                                Enter your email
+                            <div className={`${styles.inputContentDefault} relative `}>
                                 <input
-                                    className={`${styles.inputDefault}`}
+                                    className={`${styles.inputDefault} peer `}
                                     type="email"
                                     value={email}
                                     onChange={handleEmailLogin}
+                                    placeholder=" "
                                 ></input>
+                                <label
+                                    className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
+                                    ml-0 origin-[0] -translate-y-4  scale-75
+                                    px-1 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100  peer-focus:top-2 
+                                    peer-focus:ml-0 peer-focus:-translate-y-4 peer-focus:scale-75
+                                   
+                                    "
+                                >
+                                    {' '}
+                                    Your email
+                                </label>
                             </div>
-                            <div className={`${styles.inputContentDefault}`}>
-                                Enter your password
+
+                            <div className={`${styles.inputContentDefault} relative`}>
                                 <input
-                                    className={`${styles.inputDefault}`}
+                                    className={`${styles.inputDefault} peer`}
                                     type="password"
                                     value={password}
+                                    placeholder=" "
                                     onChange={handlePasswordLogin}
                                 ></input>
+                                <label
+                                    className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
+                                    ml-0 origin-[0] -translate-y-4  scale-75
+                                    px-1 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100  peer-focus:top-2 
+                                    peer-focus:ml-0 peer-focus:-translate-y-4 peer-focus:scale-75 "
+                                >
+                                    {' '}
+                                    Your password
+                                </label>
                             </div>
                             <div className="flex items-center justify-center">
                                 <button className={`${styles.signInBtnDefault} mx-10 h-2/3 w-1/2   `} type="submit">

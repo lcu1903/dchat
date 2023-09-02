@@ -1,15 +1,7 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const Button = ({
-    children,
-    bgColor,
-    color,
-    disabled = false,
-    onClick,
-    className,
-    ...passProps
-}) => {
+const Button = ({ children, bgColor, color, disabled = false, onClick, className, ...passProps }) => {
     const classes = twMerge(`
     text-text
     flex 
@@ -18,7 +10,7 @@ const Button = ({
     hover:text-textHovered      hover:bg-hovered    
     cursor-pointer   select-none      items-center     whitespace-nowrap
     rounded    
-    ${className ?? ""}
+    ${className ?? ''}
     `);
     const props = {
         onClick,
@@ -32,12 +24,7 @@ const Button = ({
         });
     }
     return (
-        <div
-        
-            style={{ backgroundColor: bgColor, color}}
-            onClick={onClick}
-            className={classes}
-        >
+        <div style={{ backgroundColor: bgColor, color }} onClick={onClick} className={classes}>
             {children}
         </div>
     );

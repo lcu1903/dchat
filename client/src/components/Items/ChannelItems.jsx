@@ -1,4 +1,4 @@
-import { selectChannelId, selectServerId, setChannelInfo } from '../../features/channelSlice';
+import { selectChannelId, selectServerId, setChannelInfo } from '../../reducer/channelSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles';

@@ -11,7 +11,7 @@
         @apply font-fontDisplay mt-[-12px] flex h-9 w-16 items-center justify-center rounded bg-[#255d95] text-[#949698];
     }
     .icon-box {
-        @apply bg-content text-textHovered mb-2 flex h-12 w-12 items-center justify-center rounded-[30px]  hover:rounded-2xl focus:bg-itemsTheme focus:rounded-2xl  ;
+        @apply bg-content text-textHovered mb-2 flex h-12 w-12 items-center justify-center rounded-[30px]  hover:rounded-2xl   ;
     }
     .divider {
         @apply bg-divider rounded-lg;
@@ -23,7 +23,7 @@
         @apply ml-[30px] mr-5 h-[8vh]  ;
     }
     .friend-button {
-        @apply text-textHovered flex h-6 w-1/12 items-center justify-center rounded-sm  ml-[5%] ;
+        @apply text-textHovered flex h-6 w-2/12 items-center justify-center rounded-sm  ml-[5%] ;
     }
     .list {
         @apply bg-sidebar h-[40vh] w-[50vw] min-w-[30%] select-none overflow-auto rounded-md pl-1 pt-1  ;

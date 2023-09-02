@@ -5,6 +5,7 @@ const routes = {
     textChannel : "/channel/:id/:id",
     signUp:'/signUp',
     logIn:'/logIn',
+    privateChat:'/channel/@me/:id'
     
     
 };

@@ -5,11 +5,14 @@ import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { XIcon, defaultAvatar } from '../../../img';
-import { handleRemoveSentRequest } from '../../../features/friendRelationshipRequests';
+import { handleRemoveSentRequest } from '../../../action/friendRelationshipRequests';
+
 function SentFriendRequests() {
     const [user] = useAuthState(auth);
     const userRef = collection(db, 'users');
+    
     const [sentFriends, setSentFriends] = useState([]);
+
     const [sent] = useCollection(db.collection('users').doc(user?.uid).collection('sentFriends'));
     const sentList = sent?.docs.map((doc) => {
         return doc.id;

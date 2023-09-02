@@ -1,9 +1,10 @@
 import SidebarChannel from './Sidebar/SidebarChannel';
 import styles from '../styles';
 import { useSelector } from 'react-redux';
-import { selectChannelName } from '../features/channelSlice';
+import { selectChannelName } from '../reducer/channelSlice';
 import { HashtagIcon } from '../img';
-import Chat from './Chat';
+
+import ServerChat from './chat/ServerChat';
 
 function Channels() {
     const channelName = useSelector(selectChannelName);
@@ -21,7 +22,7 @@ function Channels() {
                     <div>{channelName}</div>
                 </div>
                 <div className="mb-4 flex flex-col space-y-2 px-2">
-                    <Chat />
+                    <ServerChat />
                 </div>
             </div>
         </div>

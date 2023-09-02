@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { HeadphoneIcon, OffHeadphoneIcon, OffMicIcon, OnMicIcon, SettingsIcon } from '../../img';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUsername } from '../../features/userSlice';
+import { selectUserName } from '../../reducer/userSlice';
 function User() {
     const navigate = useNavigate();
 
     const [user] = useAuthState(auth);
 
-    let [name, setName] = useState(useSelector(selectUsername));
+    let [name, setName] = useState(useSelector(selectUserName));
     const [isLoading, setIsLoading] = useState(true);
 
     if (!name) name = user?.displayName;
@@ -27,7 +27,7 @@ function User() {
                 setIsLoading(false);
             });
     }
-    
+
     const handleSignOutClicked = () => {
         auth.signOut();
         navigate('/');
@@ -62,7 +62,7 @@ function User() {
                         onClick={handleSignOutClicked}
                     ></img>
                     <div className="pl-1">
-                        <div className="text-textHovered">{name}...</div>
+                        <div className="text-textHovered">{name}</div>
                         <div className="text-xs">{user?.uid.slice(0, 8)}...</div>
                     </div>
                 </Button>

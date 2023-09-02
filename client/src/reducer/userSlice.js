@@ -18,6 +18,6 @@ export const userSlice = createSlice({
 export const { setUserInfo } = userSlice.actions;
 
 export const selectUserId = (state) => state.users.userId;
-export const selectUsername = (state) => state.users.username;
+export const selectUserName = (state) => state.users.username;
 
 export default userSlice.reducer;

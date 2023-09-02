@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
-import { PlusIcon } from '../img';
-import styles from '../styles';
-import { selectChannelId, selectChannelName, selectServerId } from '../features/channelSlice';
+import { PlusIcon } from '../../img';
+import styles from '../../styles';
+import { selectChannelId, selectChannelName, selectServerId } from '../../reducer/channelSlice';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import { useRef } from 'react';
 import firebase from 'firebase/compat/app';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import Message from './Message';
+import Message from '../Message';
 
-function Chat() {
+function ServerChat() {
     const channelName = useSelector(selectChannelName);
     const channelId = useSelector(selectChannelId);
 
@@ -122,4 +122,4 @@ function Chat() {
     );
 }
 
-export default Chat;
+export default ServerChat;

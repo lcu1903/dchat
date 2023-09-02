@@ -5,7 +5,7 @@ import FriendItems from '../../Items/FriendItems';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { CheckIcon, XIcon, defaultAvatar } from '../../../img';
-import { handleAcceptFriend, handleDeclineFriend } from '../../../features/friendRelationshipRequests';
+import { handleAcceptFriend, handleDeclineFriend } from '../../../action/friendRelationshipRequests';
 
 function PendingRequests() {
     const [user] = useAuthState(auth);

@@ -2,13 +2,38 @@ import moment from 'moment';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase';
 import { Trash2 } from 'react-feather';
-import { selectChannelId, selectServerId } from '../features/channelSlice';
+import { selectChannelId, selectServerId } from '../reducer/channelSlice';
 import { useSelector } from 'react-redux';
 import Button from './Button';
-function Message({ id, message, timestamp, name, photoURL, email }) {
+import { selectUserChatId } from '../reducer/chatUserSlice';
+import { selectUserId } from '../reducer/userSlice';
+
+function Message({ id, message, timestamp, name, photoURL, email, sentUserId }) {
     const [user] = useAuthState(auth);
     var channelId = useSelector(selectChannelId);
     const serverId = useSelector(selectServerId);
+    const chatId = useSelector(selectUserChatId);
+    const userId = useSelector(selectUserId);
+
+    const deleteServerMessage = () => {
+        db.collection('serverItems')
+            .doc(serverId)
+            .collection('channels')
+            .doc(channelId)
+            .collection('message')
+            .doc(id)
+            .delete();
+    };
+
+    const deleteIndividualMessage = () => {
+        db.collection('users')
+            .doc(userId)
+            .collection('conversations')
+            .doc(chatId)
+            .collection('message')
+            .doc(id)
+            .delete();
+    };
 
     return (
         <div className="hover:bg-hovered my-5 mr-2 flex items-center p-1 pl-5 ">
@@ -26,13 +51,17 @@ function Message({ id, message, timestamp, name, photoURL, email }) {
                 <Button
                     className="hover:text-textHovered hover:bg-trashBg ml-auto cursor-pointer rounded-sm p-1 opacity-20 hover:opacity-100"
                     onClick={() => {
-                        db.collection('serverItems')
-                            .doc(serverId)
-                            .collection('channels')
-                            .doc(channelId)
-                            .collection('message')
-                            .doc(id)
-                            .delete();
+                        deleteServerMessage();
+                    }}
+                >
+                    <Trash2 className=" h-5" />
+                </Button>
+            )}
+            {userId === sentUserId && (
+                <Button
+                    className="hover:text-textHovered hover:bg-trashBg ml-auto cursor-pointer rounded-sm p-1 opacity-20 hover:opacity-100"
+                    onClick={() => {
+                        deleteIndividualMessage();
                     }}
                 >
                     <Trash2 className=" h-5" />

@@ -1,9 +1,11 @@
 import './input.css';
 import { BrowserRouter } from 'react-router-dom';
-import router from './config/routes';
 import { Routes, Route } from 'react-router-dom';
+
+import router from './config/routes';
 import Hero from './pages/Hero';
 import DefaultLayout from './components/layouts/DefaultLayout';
+
 import { LogIn, SignUp } from './pages';
 
 function App() {

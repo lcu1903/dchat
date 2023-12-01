@@ -22,14 +22,14 @@ const styles = {
     signInBtnDefault:
         'justify-center bg-itemsTheme hover:bg-itemsHoverTheme text-textHovered w-full h-16 mb-4 mt-2 p-[10px] rounded-sm',
     signInDefault: 'hero-bg flex h-screen w-screen flex-col items-center justify-center ',
-    signInContentDefault: 'bg-content h-[370px] w-[416px] rounded-lg p-8',
+    signInContentDefault: 'bg-content h-max w-[416px] rounded-lg p-8',
 
-    inputBoxDefault: 'bg-hovered flex flex-col h-[250px] justify-center rounded-sm',
-    inputFormDefault: 'flex w-full flex-col',
+    inputBoxDefault: 'bg-hovered flex flex-col h-max justify-center rounded-sm',
+    inputFormDefault: 'flex w-full  h-full flex-col',
     inputContentDefault: 'text-text flex h-max w-full flex-col px-4 py-3',
     inputDefault: 'bg-content h-full rounded-sm py-2 outline-none',
 
-    allFriendPageHeight:'max-h-[calc(100vh_-_52px)]',
+    allFriendPageHeight: 'max-h-[calc(100vh_-_52px)]',
 };
 
 export default styles;

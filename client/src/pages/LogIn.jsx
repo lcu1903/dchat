@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../reducer/userSlice';
 import styles from '../styles';
+import LogInErrorMessage from '../components/modal/LogInErrorMessage';
+import YesNoModal from '../components/modal/YesNoModal';
 
 function LogIn() {
     const [user] = useAuthState(auth);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [username,setUsername] = useState();
-   
+    const [username, setUsername] = useState();
 
     useEffect(() => {
         if (user) {
@@ -23,12 +24,11 @@ function LogIn() {
                 .doc(user.uid)
                 .get()
                 .then((doc) => {
-                    setUsername(doc.data()?.username)
+                    setUsername(doc.data()?.username);
                 });
         }
     });
 
-   
     const setUser = () => {
         dispatch(
             setUserInfo({
@@ -66,7 +66,8 @@ function LogIn() {
                 console.log(userCredential);
             })
             .catch((error) => {
-                console.log(error);
+                setShowLogInErrorMessage(true);
+                setTimeout(handleCloseLogInErrorMessage, 5000);
             });
     };
     const [email, setEmail] = useState('');
@@ -85,76 +86,85 @@ function LogIn() {
         }
     };
 
+    const [showLogInErrorMessage, setShowLogInErrorMessage] = useState(false);
+    const handleCloseLogInErrorMessage = () => setShowLogInErrorMessage(false);
+
     return (
-        <div className={`${styles.signInDefault}`}>
-            <div className={`${styles.signInContentDefault} h-max shadow-2xl`}>
-                <button
-                    className={`${styles.signInBtnDefault}`}
-                    onClick={
-                        !user
-                            ? logIn
-                            : () => {
-                                
-                                setUser();                          
-                                navigate(routes.serverChannel);                            
-                              }
-                    }
-                >
-                    {!user ? 'Login with Google' : 'Open discord'}
-                </button>
-                {!user ? (
-                    <div className={`${styles.inputBoxDefault}`}>
-                        <form className={`${styles.inputFormDefault}`} onSubmit={signIn}>
-                            <h1 className={`${styles.signInTitleDefault}`}>Login with email</h1>
-                            <div className={`${styles.inputContentDefault} relative `}>
-                                <input
-                                    className={`${styles.inputDefault} peer `}
-                                    type="email"
-                                    value={email}
-                                    onChange={handleEmailLogin}
-                                    placeholder=" "
-                                ></input>
-                                <label
-                                    className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
+        <div>
+            
+            <LogInErrorMessage
+                onClose={handleCloseLogInErrorMessage}
+                visible={showLogInErrorMessage}
+            ></LogInErrorMessage>
+            <div className={`${styles.signInDefault}`}>
+                <div className={`${styles.signInContentDefault} h-max shadow-2xl`}>
+                    <button
+                        className={`${styles.signInBtnDefault}`}
+                        onClick={
+                            !user
+                                ? logIn
+                                : () => {
+                                      setUser();
+                                      navigate(routes.serverChannel);
+                                  }
+                        }
+                    >
+                        {!user ? 'Login with Google' : 'Open discord'}
+                    </button>
+                    {!user ? (
+                        <div className={`${styles.inputBoxDefault}`}>
+                            <form className={`${styles.inputFormDefault}`} onSubmit={signIn}>
+                                <h1 className={`${styles.signInTitleDefault}`}>Login with email</h1>
+                                <div className={`${styles.inputContentDefault} relative `}>
+                                    <input
+                                        className={`${styles.inputDefault} peer `}
+                                        type="email"
+                                        value={email}
+                                        onChange={handleEmailLogin}
+                                        placeholder=" "
+                                    ></input>
+                                    <label
+                                        className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
                                     ml-0 origin-[0] -translate-y-4  scale-75
                                     px-1 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100  peer-focus:top-2 
                                     peer-focus:ml-0 peer-focus:-translate-y-4 peer-focus:scale-75
                                    
                                     "
-                                >
-                                    {' '}
-                                    Your email
-                                </label>
-                            </div>
+                                    >
+                                        {' '}
+                                        Your email
+                                    </label>
+                                </div>
 
-                            <div className={`${styles.inputContentDefault} relative`}>
-                                <input
-                                    className={`${styles.inputDefault} peer`}
-                                    type="password"
-                                    value={password}
-                                    placeholder=" "
-                                    onChange={handlePasswordLogin}
-                                ></input>
-                                <label
-                                    className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
+                                <div className={`${styles.inputContentDefault} relative`}>
+                                    <input
+                                        className={`${styles.inputDefault} peer`}
+                                        type="password"
+                                        value={password}
+                                        placeholder=" "
+                                        onChange={handlePasswordLogin}
+                                    ></input>
+                                    <label
+                                        className="peer-focus:text-itemsTheme pointer-events-none  absolute top-2
                                     ml-0 origin-[0] -translate-y-4  scale-75
                                     px-1 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100  peer-focus:top-2 
                                     peer-focus:ml-0 peer-focus:-translate-y-4 peer-focus:scale-75 "
-                                >
-                                    {' '}
-                                    Your password
-                                </label>
-                            </div>
-                            <div className="flex items-center justify-center">
-                                <button className={`${styles.signInBtnDefault} mx-10 h-2/3 w-1/2   `} type="submit">
-                                    Login
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                ) : (
-                    ' '
-                )}
+                                    >
+                                        {' '}
+                                        Your password
+                                    </label>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <button className={`${styles.signInBtnDefault} mx-10 h-2/3 w-1/2   `} type="submit">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    ) : (
+                        ' '
+                    )}
+                </div>
             </div>
         </div>
     );

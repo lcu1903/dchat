@@ -10,7 +10,7 @@ import { handleRemoveSentRequest } from '../../../action/friendRelationshipReque
 function SentFriendRequests() {
     const [user] = useAuthState(auth);
     const userRef = collection(db, 'users');
-    
+
     const [sentFriends, setSentFriends] = useState([]);
 
     const [sent] = useCollection(db.collection('users').doc(user?.uid).collection('sentFriends'));
@@ -42,18 +42,17 @@ function SentFriendRequests() {
             SENT
             {sentFriends.map((elements) => {
                 return (
-                    <div key={elements.id}>
-                        <FriendItems name={elements.name} avatar={elements.avatar}>
-                            <button
-                                className="friend-button bg-darkerRed hover:bg-red ml-[25%]     "
-                                onClick={() =>{handleRemoveSentRequest(elements.id, user.uid)
-                                        sentFriends.splice(sentFriends.indexOf(elements),1)
-                                    }}
-                            >
-                                <XIcon />
-                            </button>
-                        </FriendItems>
-                    </div>
+                    <FriendItems name={elements.name} avatar={elements.avatar} key={elements.id}>
+                        <button
+                            className="friend-button bg-darkerRed hover:bg-red ml-[25%]     "
+                            onClick={() => {
+                                handleRemoveSentRequest(elements.id, user.uid);
+                                sentFriends.splice(sentFriends.indexOf(elements), 1);
+                            }}
+                        >
+                            <XIcon />
+                        </button>
+                    </FriendItems>
                 );
             })}
         </div>

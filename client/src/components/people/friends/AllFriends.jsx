@@ -13,6 +13,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUserChatInfo } from '../../../reducer/chatUserSlice';
+import YesNoModal from '../../modal/YesNoModal';
 
 function AllFriends() {
     const navigate = useNavigate();
@@ -27,6 +28,8 @@ function AllFriends() {
 
     const [allFriendList, setAllFriendList] = useState([]);
 
+    const [showYesNoModal, setShowYesNoModal] = useState(false);
+    const handleCloseYesNoModal = () => setShowYesNoModal(false);
     useEffect(() => {
         if (friendList) {
             const q = query(userRef, where('userId', 'in', friendList));
@@ -61,35 +64,51 @@ function AllFriends() {
     };
 
     const IndividualChat = (id) => {
-        
         navigate(`/channel/@me/${id}`);
     };
+    const [friendRemoveId, setFriendRemoveId] = useState();
+    const [yesClicked, setYesClicked] = useState(false);
+    const handleClickRemoveFriend = (id, friendId, elements) => {
+        setFriendRemoveId(friendId);
+        setShowYesNoModal(true);
+    };
+
+    if (yesClicked) {
+        let tempRemoveFriendObj = (allFriendList.filter((elements) => elements.id === friendRemoveId))
+        allFriendList.splice(allFriendList.indexOf(tempRemoveFriendObj[0]), 1);
+        handleRemoveFriend(friendRemoveId, user.uid);
+    }
     return (
         <div className="friend-list list text-itemsTheme hover-shadow-blue-outline mt-2  overflow-auto">
             YOUR FRIENDS
             {allFriendList?.map((elements) => {
                 return (
-                    <FriendItems
-                        key={elements.id}
-                        name={elements.name}
-                        avatar={elements.avatar}
-                        onClick={() => {
-                            IndividualChat(elements.id);
-                            setChatUser(elements.name, elements.id);
-                        }}
-                    >
-                        <button
-                            className="friend-button bg-darkerRed hover:bg-red ml-[25%] "
+                    <div key={elements.id}>
+                        <FriendItems
+                            name={elements.name}
+                            avatar={elements.avatar}
                             onClick={() => {
-                                handleRemoveFriend(elements.id, user.uid);
-                                allFriendList.splice(allFriendList.indexOf(elements), 1);
+                                IndividualChat(elements.id);
+                                setChatUser(elements.name, elements.id);
+                            }}
+                        ></FriendItems>
+                        <button
+                            className=" friend-button bg-darkerRed hover:bg-red fixed left-[35%] ml-[25%] mt-[-2.55rem] w-[100px] "
+                            onClick={() => {
+                                handleClickRemoveFriend(user.uid, elements.id, elements);
                             }}
                         >
                             <RemoveFriendIcon />
                         </button>
-                    </FriendItems>
+                    </div>
                 );
             })}
+            <YesNoModal
+                visible={showYesNoModal}
+                onClose={handleCloseYesNoModal}
+                id={friendRemoveId}
+                yesClicked={setYesClicked}
+            ></YesNoModal>
         </div>
     );
 }

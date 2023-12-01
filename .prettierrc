@@ -1,5 +1,5 @@
 {
-    "arrowParens": "always",
+    "arrowParents": "always",
     "bracketSameLine": false,
     "bracketSpacing": true,
     "embeddedLanguageFormatting": "auto",
